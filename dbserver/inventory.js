@@ -94,9 +94,9 @@ route.route('/updateItem').post(function (req, res) {
 });
 
 // To Delete The Item
-route.route('/deleteItem/:id').get(function (req, res) {
+route.route('/deleteItem').post(function (req, res) {
   itemModel.findByIdAndRemove({
-    _id: req.params.id
+    _id: req.body.id
   }, function (err, item) {
     if (err) {
       res.status(400).json({

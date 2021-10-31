@@ -74,6 +74,20 @@ export class HomepageComponent implements OnInit {
     })
   }
 
+  delete_item(item) {
+    const payload = {
+      id: item._id
+    }
+    this._commonService.delete_item(payload).subscribe(res => {
+      if(res.errCode ==0) {
+        for(let  i=0;i< this.items_data.length; i++) {
+          if(this.items_data[i]._id == item._id) {
+            this.items_data.splice(i,1);
+          }
+        }
+      }
+    })
+  }
   edit_item(item) {
     this.is_new = false;
     this.open_modal();
