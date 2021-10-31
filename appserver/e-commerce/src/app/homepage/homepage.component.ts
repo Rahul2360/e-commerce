@@ -39,6 +39,12 @@ export class HomepageComponent implements OnInit {
   save_item() {
     const payload = this.itemPayload.get_payload();
     console.log(payload);
+    this._commonService.add_items(payload).subscribe(res => {
+      if(res.errCode ==0) {
+        this.items_data.push(res.data);
+        this.close_modal();
+      }
+    })
 
   }
 }
