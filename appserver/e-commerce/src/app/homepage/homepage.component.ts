@@ -1,5 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { CommonService } from '../common.service';
+import { ItemPayloadComponent } from '../item-payload/item-payload.component';
+declare var $:any;
 
 @Component({
   selector: 'app-homepage',
@@ -8,9 +10,8 @@ import { CommonService } from '../common.service';
 })
 export class HomepageComponent implements OnInit {
 
-  items_data = [
-    11,2,3,4,5,6,7,8,9,0
-  ];
+  @ViewChild('itemPayload',{static: false}) itemPayload: ItemPayloadComponent;
+  items_data = [];
   constructor(
     private _commonService: CommonService
   ) { }
@@ -25,5 +26,19 @@ export class HomepageComponent implements OnInit {
         this.items_data = res.data;
       }
     })
+  }
+
+  open_modal() {
+    $('#add-item-modal').modal({backdrop: 'static', keyoard: false})
+  }
+
+  close_modal() {
+    $('#add-item-modal').modal('hide');
+  }
+
+  save_item() {
+    const payload = this.itemPayload.get_payload();
+    console.log(payload);
+
   }
 }

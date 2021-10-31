@@ -1,1 +1,27 @@
-<p>item-payload works!</p>
+<form [formGroup]="item_payload" (ngSubmit)="validate_payload()">
+
+  <div class="row">
+    <div class="col-12">
+      <label class="mb-0" for="name">Item Name<span class="invalid"> *</span></label>
+      <input id="name" type="text" formControlName="name" class="form-control form-control-sm">
+      <p class="mb-0 invalid" *ngIf="submitted_payload && item_payload.controls.name.errors.required">This field is required</p>
+    </div>
+
+    <div class="col-12">
+      <label class="mb-0" for="price">Price<span class="invalid"> *</span></label>
+      <input id="price" type="number" formControlName="price" class="form-control form-control-sm">
+      <p class="mb-0 invalid" *ngIf="submitted_payload && item_payload.controls.price.errors.required">This field is required</p>
+    </div>
+
+    <div class="col-12">
+      <label class="mb-0" for="description">Description</label>
+      <input id="description" type="text" formControlName="description" class="form-control form-control-sm">
+    </div>
+
+    <div class="col-12">
+      <label class="mb-0" for="imageUrl">Image URL</label>
+      <input id="imageUrl" type="text" formControlName="imageUrl" class="form-control form-control-sm">
+    </div>
+
+  </div>
+</form>
