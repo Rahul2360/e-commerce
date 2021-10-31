@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 // import { ToastrService } from 'ngx-toastr';
 // import { ToastrUtilityService } from '../../../dce-service/toastr-utility.service';
 import { FormGroup, FormBuilder, Validators, Form } from '@angular/forms';
@@ -39,7 +39,7 @@ export class ItemPayloadComponent implements OnInit {
     return false;
   }
 
-  clear_meeting_details(){
+  clear_payload(){
     this.item_payload.patchValue({
       'name': '',
       'description': '',
@@ -48,7 +48,7 @@ export class ItemPayloadComponent implements OnInit {
     })
   }
 
-  toggle_meeting_details(bool) {
+  toggle_payload(bool) {
     if (bool){
       this.item_payload.enable();
     } else {
@@ -56,11 +56,11 @@ export class ItemPayloadComponent implements OnInit {
     }
   }
 
-  fill_meeting_details(data) {
+  fill_payload(data) {
     this.item_payload.patchValue({
       'name': data.name,
       'description': data.description,
-      'price': data.description,
+      'price': data.price,
       'imageUrl': data.imageUrl,
     })
   }

@@ -21,4 +21,14 @@ export class CommonService {
     return this.http.post<any>(this.add_item_url, payload);
   }
 
+  private update_item_url = this.url + '/inventory/updateItem'
+  update_item(payload) {
+    return this.http.post<any>(this.update_item_url, payload);
+  }
+
+  private delete_item_url = this.url + '/inventory/deleteItem'
+  delete_item(payload) {
+    return this.http.post<any>(this.delete_item_url, payload);
+  }
+
 }

@@ -73,6 +73,9 @@ route.route('/updateItem').post(function (req, res) {
       return next(new Error('Unable To Find Item With This Id'));
     else {
       item[0].name = req.body.name;
+      item[0].description = req.body.description;
+      item[0].price = req.body.price;
+      item[0].imageUrl = req.body.imageUrl;
       item[0].save().then(data => {
         res.json({
           "errCode": 0,
