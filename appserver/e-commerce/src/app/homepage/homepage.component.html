@@ -22,7 +22,7 @@
   <div *ngIf="items_data.length" class="row mt-3">
     <div *ngFor="let item of items_data" class=" col-12 col-sm-6 col-md-4 col-lg-3">
       <div class="card item-card mb-2 p-2">
-        <div class="action">
+        <div class="action-button">
           <button class="btn btn-sm btn-primary ml-2 float-right edit-button" (click)="edit_item(item)">
             <fa-icon [icon]="faPen"></fa-icon>
           </button>

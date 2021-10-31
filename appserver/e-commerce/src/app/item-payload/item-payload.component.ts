@@ -46,6 +46,7 @@ export class ItemPayloadComponent implements OnInit {
       'price': '',
       'imageUrl': '',
     })
+    this.submitted_payload = false
   }
 
   toggle_payload(bool) {

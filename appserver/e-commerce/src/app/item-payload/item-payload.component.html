@@ -4,13 +4,13 @@
     <div class="col-12">
       <label class="mb-0" for="name">Item Name<span class="invalid"> *</span></label>
       <input id="name" type="text" formControlName="name" class="form-control form-control-sm">
-      <p class="mb-0 invalid" *ngIf="submitted_payload && item_payload.controls.name.errors.required">This field is required</p>
+      <p class="mb-0 invalid" *ngIf="submitted_payload && item_payload.controls.name?.errors?.required">This field is required</p>
     </div>
 
     <div class="col-12">
       <label class="mb-0" for="price">Price<span class="invalid"> *</span></label>
       <input id="price" type="number" formControlName="price" class="form-control form-control-sm">
-      <p class="mb-0 invalid" *ngIf="submitted_payload && item_payload.controls.price.errors.required">This field is required</p>
+      <p class="mb-0 invalid" *ngIf="submitted_payload && item_payload.controls.price?.errors?.required">This field is required</p>
     </div>
 
     <div class="col-12">

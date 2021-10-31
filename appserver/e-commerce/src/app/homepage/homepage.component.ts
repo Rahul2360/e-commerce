@@ -45,36 +45,43 @@ export class HomepageComponent implements OnInit {
   new_item() {
     this.is_new = true;
     this.open_modal();
+    this.itemPayload.clear_payload()
   }
 
   save_item() {
     const payload = this.itemPayload.get_payload();
-    this._commonService.add_items(payload).subscribe(res => {
-      if(res.errCode ==0) {
-        this.items_data.push(res.data);
-        this.close_modal();
-      }
-    })
+    if(this.itemPayload.validate_payload()) {
+      this._commonService.add_items(payload).subscribe(res => {
+        if(res.errCode ==0) {
+          this.items_data.push(res.data);
+          this.close_modal();
+        }
+      })
+    }
   }
 
   update_item() {
     const payload = this.itemPayload.get_payload();
     payload['id'] = this.selected_item._id; 
-    this._commonService.update_item(payload).subscribe(res => {
-      if(res.errCode ==0) {
-        for(let  i=0;i< this.items_data.length; i++) {
-          if(this.items_data[i]._id == this.selected_item._id) {
-            for(let key in this.items_data[i]) {
-              this.items_data[i][key] = payload[key] ? payload[key]:'';
+    if(this.itemPayload.validate_payload()) {
+      this._commonService.update_item(payload).subscribe(res => {
+        if(res.errCode ==0) {
+          for(let  i=0;i< this.items_data.length; i++) {
+            if(this.items_data[i]._id == this.selected_item._id) {
+              this.items_data[i]['name'] = res.data['name'];
+              this.items_data[i]['description'] = res.data['description'];
+              this.items_data[i]['imageUrl'] = res.data['imageUrl'];
+              this.items_data[i]['price'] = res.data['price'];
             }
           }
+          this.close_modal();
         }
-        this.close_modal();
-      }
-    })
+      })
+    }
   }
 
   delete_item(item) {
+    console.log(item);
     const payload = {
       id: item._id
     }
